@@ -36,8 +36,8 @@ const UserSyncHandler = () => {
         setSynced(true); //prevent re-posting
         
       } catch (error) {
-        console.error("User sync failed", error);
-        toast.error("User to Create Account. Please try again");
+        console.log("User sync failed", error);
+        toast.error("Unable to Create Account. Please try again");
       }
     };
 
