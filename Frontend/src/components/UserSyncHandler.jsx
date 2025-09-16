@@ -9,7 +9,7 @@ const UserSyncHandler = () => {
   const { isLoaded, isSignedIn, getToken } = useAuth();
   const { user } = useUser();
   const [synced, setSynced] = useState(false);
-  const { backendUrl } = useContext(AppContext);
+  const { backendUrl,loadUserCredit} = useContext(AppContext);
 
   useEffect(() => {
     const saveUser = async () => {
@@ -25,6 +25,7 @@ const UserSyncHandler = () => {
           email: user.primaryEmailAddress.emailAddress,
           firstName: user.firstName,
           lastName: user.lastName,
+          photoUrl:user.imageUrl,
         };
 
         await axios.post(backendUrl + "/users", userData, { headers: { "Authorization": `Bearer ${token}` } });
@@ -34,6 +35,11 @@ const UserSyncHandler = () => {
         //       toast.error("Failed to Create User Account");
         //   }
         setSynced(true); //prevent re-posting
+        await loadUserCredit(); // update user credit after successful sync
+
+
+
+
         
       } catch (error) {
         console.log("User sync failed", error);
