@@ -2,12 +2,13 @@ import logo from '../assets/logo.png';
 import people from '../assets/people.png';
 import people_org from '../assets/people_org.png';
 import video_banner from '../assets/home-page-banner.mp4';
-
+import credits from '../assets/dollar.png';
 export const assets = {
   logo,
   video_banner,
   people,
   people_org,
+  credits,
 };
 export const steps = [
   {
