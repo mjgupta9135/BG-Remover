@@ -1,7 +1,10 @@
 import toast from 'react-hot-toast';
 import { assets } from '../assets/assets';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Header = () => {
+  const { removeBg } = useContext(AppContext);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
       {/* Left side: video banner */}
@@ -27,7 +30,13 @@ const Header = () => {
           work, 100% AI-driven.
         </p>
         <div>
-          <input type="file" accept="image/*" id="upload1" hidden />
+          <input
+            type="file"
+            accept="image/*"
+            id="upload1"
+            hidden
+            onChange={(e) => removeBg(e.target.files[0])}
+          />
           <label
             htmlFor="upload1"
             className="bg-black text-white font-medium px-8 py-4 rounded-full hover:opacity-90 transition-transform hover:scale-105 text-lg"
@@ -35,12 +44,6 @@ const Header = () => {
             Upload Your Image
           </label>
         </div>
-        {/* <button className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow hover:bg-indigo-700">
-          Try it now
-        </button> */}
-        {/* <button onClick={() => toast.success('Toast is Working')}>
-          Test Toast Notification
-        </button> */}
       </div>
     </div>
   );

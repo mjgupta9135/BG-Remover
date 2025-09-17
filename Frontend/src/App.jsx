@@ -5,6 +5,8 @@ import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import UserSyncHandler from './components/UserSyncHandler';
+import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import Result from './pages/Result';
 
 const App = () => {
   return (
@@ -14,6 +16,17 @@ const App = () => {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/result" element={
+          <>
+            <SignedIn>
+              <Result/>
+            </SignedIn>
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+
+         } />
       </Routes>
 
       <Footer />
